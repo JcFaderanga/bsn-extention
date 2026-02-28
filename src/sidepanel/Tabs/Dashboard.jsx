@@ -13,8 +13,8 @@ function Dashboard({ lastClick, testResult, goToLogs, trackingEnabled }) {
     'Admin',
     'Employee',
     'Manager',
-    'ManagerAdmin',
-    'PartnerAdmin'
+    'Manager Admin',
+    'Partner Admin'
   ];
 
   // helper that sends a message to the content script in the active tab
@@ -46,7 +46,7 @@ function Dashboard({ lastClick, testResult, goToLogs, trackingEnabled }) {
 
   return (
     <div>
-      <div className='text-slate-400 my-1'>v1.0.0 - Dashboard</div>
+      <div className='text-slate-400 my-1'>v1.0.6 - Dashboard</div>
       <div className="space-y-4">
         {/* <div className="p-4 bg-white rounded shadow">
           <p className="mb-2">

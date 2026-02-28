@@ -1,22 +1,32 @@
 const user = {
-    Admin: [
-        { email: "adminhjahsfhadasdadsasdasdhasdh@example123aa.com", password: "admin123" },
-        { email: "admin2@example.com", password: "admin456" },  
-    ],
-    Employee: [
-        { email: "employee@example.com", password: "employee123" }
-    ],
-    Manager: {
-        email: "manager@example.com",
-        password: "manager123",
+  Admin: [
+    {
+      email: import.meta.env.VITE_ADMIN_1_EMAIL ?? '',
+      password: import.meta.env.VITE_ADMIN_1_PASSWORD ?? ''
     },
-    ManagerAdmin: {
-        email: "mgradmin@example.com",
-        password: "mgradmin123",
-    },
-    PartnerAdmin: {
-        email: "partneradmin@example.com",
-        password: "partner123",
+    {
+      email: import.meta.env.VITE_ADMIN_2_EMAIL ?? '',
+      password: import.meta.env.VITE_ADMIN_2_PASSWORD ?? ''
     }
+  ],
+  Employee: [
+    {
+      email: import.meta.env.VITE_EMPLOYEE_1_EMAIL ?? '',
+      password: import.meta.env.VITE_EMPLOYEE_1_PASSWORD ?? ''
+    }
+  ],
+  Manager: {
+    email: import.meta.env.VITE_MANAGER_EMAIL ?? '',
+    password: import.meta.env.VITE_MANAGER_PASSWORD ?? ''
+  },
+  ManagerAdmin: {
+    email: import.meta.env.VITE_MANAGER_ADMIN_EMAIL ?? '',
+    password: import.meta.env.VITE_MANAGER_ADMIN_PASSWORD ?? ''
+  },
+  PartnerAdmin: {
+    email: import.meta.env.VITE_PARTNER_ADMIN_EMAIL ?? '',
+    password: import.meta.env.VITE_PARTNER_ADMIN_PASSWORD ?? ''
+  }
 };
+
 export default user;

@@ -6,7 +6,14 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      input: '/index.html'
+      input: {
+        sidepanel: '/index.html',
+        contentScript: '/src/contentScript.js',
+        background: '/src/background/background.js'
+      },
+      output: {
+        entryFileNames: '[name].js'
+      }
     }
   }
 });
