@@ -21,9 +21,7 @@ function Settings() {
       tabs.forEach((tab) => {
         if (tab.id) {
           chrome.tabs.sendMessage(tab.id, { type: 'setTracking', enabled: enable }, () => {
-            // ignore errors (tab might not have our script)
             if (chrome.runtime.lastError) {
-              // console.log('sendMessage error', chrome.runtime.lastError.message);
             }
           });
         }
@@ -31,7 +29,6 @@ function Settings() {
     });
   };
 
-  // load current tracking state from storage when component mounts
   React.useEffect(() => {
     chrome.storage.local.get(['trackingEnabled'], (result) => {
       if (typeof result.trackingEnabled === 'boolean') {
@@ -55,7 +52,6 @@ function Settings() {
           <label htmlFor="optionA">Option A (placeholder)</label>
         </div>
 
-        {/* tracking toggle */}
         <div className="flex items-center">
           <input
             id="trackingToggle"
@@ -67,8 +63,6 @@ function Settings() {
           <label htmlFor="trackingToggle">Enable click/highlight tracking</label>
         </div>
 
-
-        {/* tracking toggle */}
         <div className="flex items-center">
           <input
             id="trackingToggle"
@@ -86,8 +80,22 @@ function Settings() {
         >
           Save
         </button>
+
         {status && <p className="text-green-600">{status}</p>}
       </div>
+
+      {/* Embedded Website Section (added below existing content) */}
+      {/* <div className="mt-8">
+        <h3 className="text-lg font-semibold mb-2">Embedded Website</h3>
+        <iframe
+          src="https://facebook.com"
+          title="Embedded Website"
+          width="100%"
+          height="700"
+          style={{ border: "1px solid #ccc", borderRadius: "8px" }}
+        />
+      </div> */}
+
     </div>
   );
 }

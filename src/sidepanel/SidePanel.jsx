@@ -17,7 +17,7 @@ function SidePanel() {
   };
 
   useEffect(() => {
-    chrome.storage.local.get(['logs', 'trackingEnabled'], (result) => {
+    chrome?.storage?.local?.get(['logs', 'trackingEnabled'], (result) => {
       if (Array.isArray(result.logs)) {
         setLogs(result.logs);
       }
@@ -38,20 +38,20 @@ function SidePanel() {
         setTrackingEnabled(msg.enabled);
       }
     };
-    chrome.runtime.onMessage.addListener(handler);
+    chrome?.runtime?.onMessage?.addListener(handler);
 
     return () => {
-      chrome.runtime.onMessage.removeListener(handler);
+      chrome?.runtime?.onMessage?.removeListener(handler);
     };
   }, []);
 
   useEffect(() => {
-    chrome.storage.local.set({ logs });
+    chrome?.storage?.local?.set({ logs });
   }, [logs]);
 
   useEffect(() => {
     // read last tab from storage when component mounts
-    chrome.storage.local.get(['lastTab'], (result) => {
+    chrome?.storage?.local?.get(['lastTab'], (result) => {
       if (result.lastTab && TABS.includes(result.lastTab)) {
         setActiveTab(result.lastTab);
       }
@@ -60,7 +60,7 @@ function SidePanel() {
 
   useEffect(() => {
     // persist selection
-    chrome.storage.local.set({ lastTab: activeTab });
+    chrome?.storage?.local?.set({ lastTab: activeTab });
   }, [activeTab]);
 
   const clearLogs = () => {

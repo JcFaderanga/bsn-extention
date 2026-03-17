@@ -1,48 +1,12 @@
 import React, { useState } from 'react';
 import Menu from '../components/dashboard/menu';
-import mockData from '../../data/mockData';
+import { QA_User, Prod_User } from '../../data';
 import { FaUserAlt, FaKey } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
-
+import LoginAuth from '../components/dashboard/LoginAuth';
 function Dashboard({ lastClick, testResult, goToLogs, trackingEnabled }) {
   const [subTab, setSubTab] = useState(null);
-  const [expandedRole, setExpandedRole] = useState(null);
 
-  // ✅ Must match mockData keys exactly
-  const roles = [
-    'Admin',
-    'Employee',
-    'Manager',
-    'Manager Admin',
-    'Partner Admin'
-  ];
-
-  // helper that sends a message to the content script in the active tab
-  const handleLogin = (email, password) => {
-    if (!email || !password) {
-      console.error('email/password missing');
-      return;
-    }
-    if (chrome && chrome.tabs && chrome.tabs.query) {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0] && tabs[0].id) {
-          chrome.tabs.sendMessage(
-            tabs[0].id,
-            { type: 'doLogin', email, password },
-            (resp) => {
-              if (resp && resp.status === 'error') {
-                console.error('login error', resp.message);
-              }
-            }
-          );
-        } else {
-          console.warn('no active tab to message');
-        }
-      });
-    } else {
-      console.warn('chrome.tabs API not available');
-    }
-  };
 
   return (
     <div>
@@ -86,81 +50,25 @@ function Dashboard({ lastClick, testResult, goToLogs, trackingEnabled }) {
         }
       
         {subTab === 'userLogins' && (
-          <div className="p-4 bg-white rounded shadow space-y-2">
-            <button
+          <LoginAuth 
+            setSubTab={(e) => {
+              setSubTab(null);
+            }} 
+          />
+        )}
+
+          {subTab === 'annotator' && (
+            <div className="p-4 bg-white rounded shadow">
+              <button
               className="mt-2 text-sm text-gray-500 underline"
-              onClick={() => {
-                setSubTab(null);
-                setExpandedRole(null);
-              }}
+              onClick={() => setSubTab(null)}
             >
               Back to Menu
             </button>
-
-            <h3 className="font-semibold">Choose role</h3>
-
-            <div className="flex flex-col space-y-1">
-              {roles.map(r => {
-
-                const data = mockData?.[r];
-
-                // Normalize to always be an array
-                const accounts = Array.isArray(data)
-                  ? data
-                  : data
-                  ? [data]
-                  : [];
-
-                return (
-                  <div key={r}>
-                    <div
-                      className="px-3 py-2 border border-gray-300 rounded-lg text-left cursor-pointer hover:bg-gray-100"
-                      onClick={() =>
-                        setExpandedRole(prev => prev === r ? null : r)
-                      }
-                    >
-                      {r}
-                    </div>
-
-                    {expandedRole === r && (
-                      <div className="ml-4 mt-2 space-y-2">
-                        {accounts.map((item, index) => (
-                          <div 
-                            key={index} 
-                            className="p-2 bg-gray-100 text-slate-600 rounded-xl flex justify-between"
-                            
-                            >
-                            <div className="w-[85%] flex flex-col gap-1">
-                              <div className="flex items-center gap-2 min-w-0">
-                                <FaUserAlt size={14} />
-                                <span title={item.email} className="truncate">{item.email}</span>
-                              </div>
-
-                              <div className="flex items-center gap-2 min-w-0">
-                                <FaKey size={14} />
-                                <span title={item.password} className="truncate">
-                                  {item.password}
-                                </span>
-                              </div>
-                            </div>
-
-                            <div 
-                              className='border rounded-xl flex items-center justify-center bg-gray-200 text-gray-600 px-3 hover:bg-gray-300 cursor-pointer'
-                              title='Use this cridential to login.'
-                              onClick={() => handleLogin(item.email, item.password)}
-                            >
-                              <IoIosArrowForward size={16}/>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+              <h2 className="text-lg font-bold mb-2">Annotator</h2>
+              <p>Manage annotator information here.</p>
             </div>
-          </div>
-        )}
+          )}
 
         {/* <div className="p-4 bg-white rounded shadow">Another card</div> */}
       </div>
