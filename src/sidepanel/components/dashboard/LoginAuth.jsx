@@ -44,16 +44,6 @@ const LoginAuth = ({ setSubTab }) => {
 
   return (
     <div className="p-4 bg-white rounded shadow space-y-2">
-      <button
-        className="mt-2 text-sm text-gray-500 underline"
-        onClick={() => {
-          setSubTab(null);
-          setExpandedRoleProd(null);
-          setExpandedRoleQA(null);
-        }}
-      >
-        Back to Menu
-      </button>
       {/* ============= */}
       <details>
         <summary>Production Environment</summary>
