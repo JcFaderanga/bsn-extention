@@ -5,7 +5,7 @@ import CharLength from '../components/dashboard/CharLength';
 import TaskTrack from '../components/dashboard/TaskTrack';
 import GetToken from '../components/dashboard/GetToken';
 import GenerateToken from '../components/dashboard/GenerateToken';
-
+import Training from '../components/dashboard/Training';
 const Wrapper = ({ children, setSubTab }) => {
   return (
     <div>
@@ -30,6 +30,7 @@ function Dashboard() {
     taskTrack: <TaskTrack />,
     getToken: <GetToken />,
     GenerateToken: <GenerateToken />,
+    Training: <Training />,
   };
 
   return (

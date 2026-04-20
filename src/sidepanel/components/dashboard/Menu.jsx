@@ -60,6 +60,14 @@ const Menu = ({ setSubtab }) => {
         <FaRegUser size={24} />
         <span className="mt-2 text-center text-sm">Generate Token</span>
       </div>
+
+      <div
+        className="p-4 bg-white rounded shadow w-full cursor-pointer flex items-center justify-center flex-col"
+        onClick={() => setSubtab('Training')}
+      >
+        <FaRegUser size={24} />
+        <span className="mt-2 text-center text-sm">Training</span>
+      </div>
       
     </section>
   )
