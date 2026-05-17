@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Dashboard from './Tabs/Dashboard';
 import Settings from './Tabs/Settings';
 import Logs from './Tabs/Logs';
+import { LuComputer } from "react-icons/lu";
 
 const TABS = ['Dashboard', 'Settings', 'Logs'];
 
@@ -87,9 +88,13 @@ function SidePanel() {
   };
 
   return (
-    <div className="h-full w-full flex flex-col bg-gray-50">
-      <header className="p-4 shadow-sm bg-white flex-shrink-0">
-        <h1 className="text-lg font-semibold">My Extension</h1>
+    <div className="h-full w-full flex flex-col">
+      <header className="p-4 shadow-sm bg-white flex justify-between">
+        <span className='flex gap-1 items-center text-blue-600'>
+            <LuComputer size={16} />
+            QA Assist
+        </span>
+        <i className='text-gray-500 text-sm'>v2.14.1</i>
       </header>
       <nav className="flex border-b bg-white">
         {TABS.map((tab) => (

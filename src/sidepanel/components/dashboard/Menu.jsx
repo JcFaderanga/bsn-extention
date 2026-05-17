@@ -1,76 +1,104 @@
 import React from 'react'
-import { FaRegUser } from "react-icons/fa";
+import {
+  FaRegUser,
+  FaKey,
+  FaUserShield,
+  FaClipboardList,
+  FaDatabase,
+} from "react-icons/fa";
 
+const Card = ({ icon, label, onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="
+        group
+        w-full
+        rounded-2xl
+        border border-gray-200
+        bg-white
+        shadow-sm
+        transition-all
+        duration-200
+        hover:-translate-y-1
+        hover:shadow-lg
+        hover:border-blue-400
+        active:scale-[0.98]
+        flex
+        flex-col
+        items-center
+        justify-center
+        gap-1
+        min-h-24
+      "
+    >
+      <div
+        className="
+          flex
+          h-10
+          w-10
+          items-center
+          justify-center
+          rounded-full
+          bg-blue-50
+          text-blue-600
+          transition-all
+          duration-200
+          group-hover:bg-blue-100
+          group-hover:scale-110
+        "
+      >
+        {icon}
+      </div>
 
-// const Card =()=>{
-
-//   return(
-
-//   )
-// }
-
+      <span className="text-xs font-medium text-gray-700 text-center leading-tight">
+        {label}
+      </span>
+    </button>
+  );
+};
 
 const Menu = ({ setSubtab }) => {
+  const menus = [
+    {
+      label: "Login",
+      key: "userLogins",
+      icon: <FaRegUser size={15} />,
+    },
+    {
+      label: "255 Char",
+      key: "charlength",
+      icon: <FaClipboardList size={15} />,
+    },
+    {
+      label: "Get Token",
+      key: "getToken",
+      icon: <FaKey size={15} />,
+    },
+    {
+      label: "Generate Token",
+      key: "GenerateToken",
+      icon: <FaUserShield size={15} />,
+    },
+    {
+      label: "Training",
+      key: "Training",
+      icon: <FaDatabase size={15} />,
+    },
+  ];
+
   return (
-    <section className='grid grid-cols-3 gap-4'>
-      <div
-        className="p-4 bg-white rounded shadow w-full cursor-pointer flex items-center justify-center flex-col"
-        onClick={() => setSubtab('userLogins')}
-      >
-        <FaRegUser size={24} />
-        <span className="mt-2 text-center text-sm">Login</span>
-      </div>
-
-      {/* <div
-        className="p-4 bg-white rounded shadow w-full cursor-pointer flex items-center justify-center flex-col"
-        onClick={() => setSubtab('annotator')}
-      >
-        <FaRegUser size={24} />
-        <span className="mt-2 text-center text-sm">Annotator</span>
-      </div> */}
-
-      <div
-        className="p-4 bg-white rounded shadow w-full cursor-pointer flex items-center justify-center flex-col"
-        onClick={() => setSubtab('charlength')}
-      >
-        <FaRegUser size={24} />
-        <span className="mt-2 text-center text-sm">255 Char</span>
-      </div>
-
-      <div
-        className="p-4 bg-white rounded shadow w-full cursor-pointer flex items-center justify-center flex-col"
-        onClick={() => setSubtab('taskTrack')}
-      >
-        <FaRegUser size={24} />
-        <span className="mt-2 text-center text-sm">Task Track</span>
-      </div>
-
-    <div
-        className="p-4 bg-white rounded shadow w-full cursor-pointer flex items-center justify-center flex-col"
-        onClick={() => setSubtab('getToken')}
-      >
-        <FaRegUser size={24} />
-        <span className="mt-2 text-center text-sm">Get Token</span>
-      </div>
-
-      <div
-        className="p-4 bg-white rounded shadow w-full cursor-pointer flex items-center justify-center flex-col"
-        onClick={() => setSubtab('GenerateToken')}
-      >
-        <FaRegUser size={24} />
-        <span className="mt-2 text-center text-sm">Generate Token</span>
-      </div>
-
-      <div
-        className="p-4 bg-white rounded shadow w-full cursor-pointer flex items-center justify-center flex-col"
-        onClick={() => setSubtab('Training')}
-      >
-        <FaRegUser size={24} />
-        <span className="mt-2 text-center text-sm">Training</span>
-      </div>
-      
+    <section className="grid grid-cols-3 gap-4 md:grid-cols-3">
+      {menus.map((menu) => (
+        <Card
+          key={menu.key}
+          icon={menu.icon}
+          label={menu.label}
+          onClick={() => setSubtab(menu.key)}
+        />
+      ))}
     </section>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

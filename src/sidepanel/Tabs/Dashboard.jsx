@@ -27,7 +27,7 @@ function Dashboard() {
   const Sections = {
     userLogins: <LoginAuth />,
     charlength: <CharLength />,
-    taskTrack: <TaskTrack />,
+    //taskTrack: <TaskTrack />,
     getToken: <GetToken />,
     GenerateToken: <GenerateToken />,
     Training: <Training />,
@@ -35,8 +35,6 @@ function Dashboard() {
 
   return (
     <div>
-      <div className="text-slate-400 my-1">v2.0.0 - Dashboard</div>
-
       <div className="space-y-4">
         {!subTab && (
           <Menu setSubtab={(tab) => setSubTab(tab)} />
