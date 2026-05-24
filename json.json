@@ -1,0 +1,30 @@
+Search User
+https://qa.api.pii-protect.com/BSNPartnersAPI/partnerslist?_filter=user:pa@142.com
+fetch("https://qa.api.pii-protect.com/BSNPartnersAPI/partnerslist?_filter=user:pa%40142.com&_start=1&_end=200&_sort=users_count&_order=DESC", {
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": "eyJraWQiOiI5bWRkQ2NrOWtEbmZwOWxZYVFNU3YxTmIrQTRpb1FvT2ZSUWxSdzUxN3pvPSIsImFsZyI6IlJTMjU2In0.eyJ1c2VySW5mbyI6IjkxOGIwNWIxN2M0MmM4ZDRlOWIyNTE4MDU1MGU5NGQ0NGQ0YzlmZDJiMzE0MWQ3ODI2OWU1YmYxYTZlY2VkNDU4M2Y5MTQzMTQ2NGFhNjMyOTAyMTdiNGE2MTQ1ODA5MTlkODQ5NGFmZGNlM2M5Mzg0ZGQ0OWIxYTk3ODIxZDczNDkwYzhhNDNhNTdhNmY4ZWEwMDQzMmE1ZDcyMDFhYWNmNTYxMDY0NDU0NDRmZmJkNTgyZDgxNDllNWE2ODBiYmIwZTE1Y2ZhOTEyODk5NTcxYWQ4NDlkNzA1NDE3NTFlYjA2NjQ5NzYxOWUwYTZmMDQ5ODEwZDc5ODA5M2IxMjAzNzg0NTMxZDEwNjY4YTFjMWY3YmI2ZjUxMTUyNTA3ZWFhZjkxNjcyNzhiYzFiNmMzOTg0MzIzNWRjZjg0MjkwYmNmYWU1MTdlZmVkOTYyNGNlZTQwZjQzNzhhZWI3MzViMWU3YThlZTAyN2I2ZDljYjI2ZjM2NDk4ZDk4ZGU3Mzg0MjAyZDE0OTVlNWRhNTg1YjdhYzYwYTkxOGFhMWJkYjBiZjQ5YTAzMGYzZjFmY2QxZTFiOWE5ZDNhOTFlYmU4ZjkyNTU4MDg4NGM5OTVkODMyNTBmNDJlZjIzODU1ZDY4YTc0Yzk5NTZlZjVlMzZiYjhjOTI2MWM3YzIzMjRiNjhkNWM3OTkyYzA5NGZlNjdiYTVkYzFjMjQ2YjdiOTQ0MzMzYTcyYzI1ODdhN2U0NmQ3OGMyNjM0MjljZjFlOGViNTI5MjI1MDNjMmNlZGRjYmQxZTY4NzY5NjgzZTgwOWVmZmZjNzFmNTM5ZDIxMjZjZDczNWU0NWFiZWQ3MWQxMjg5Y2NlOTZhMmEzNDM0YWY0NzUyMDBhNDJmZDdjMSIsInN1YiI6ImZiZjFjZDliLTRmNWItNGI0MS05YmJkLWJiZThhNzQzZGEyNCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9OdUtRNDNhc3AiLCJjb2duaXRvOnVzZXJuYW1lIjoiZmJmMWNkOWItNGY1Yi00YjQxLTliYmQtYmJlOGE3NDNkYTI0IiwiYXVkIjoiN3JwaWFqcHR2MGh2cTEwbmM3djhka2Z2bm8iLCJldmVudF9pZCI6ImNkYTM1OTI2LTEyMWMtNDcyYS1hYTI1LTkyYzI4ZTU5M2IzNiIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNzc5NTY0MzUxLCJleHAiOjE3Nzk1Njc5NTEsImlhdCI6MTc3OTU2NDM1MiwiZW1haWwiOiJhZG1pbkAxNDIuY29tIn0.bO_QL60HZ0iNu66GmRvDpFTIVah7iBJ7t5Fr3W4CcUxxXYFo0GOMZdlHIfpJOXSlIDZrzf71qrKKLmEMvCCruEIAB2rxeOnPMHihlgsW0bkzs_Uzj-VBzW_l5bCX01Qcce9zj8hPqRFfgOBPmX2pG-8L4cl3XSmu9ZsqXtlgsPT9hsIXoVrnB98vQrwaE2iZjlA_kqy-JzCWMCEWZxUvS8rKyp8zJj0RhghgT3vdKms1VzDAro9HsIlN7Zsjb2Ze6QMg_G498XpSHy-0j-KkPvKkd6Q2rxAXvnkSmLJu6CtCM8bH0gxs3LgfMamY5Kri57DpA_4qePEmKzWLvxLXyA",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Chromium\";v=\"148\", \"Google Chrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site"
+  },
+  "body": null,
+  "method": "GET"
+});
+const filtered = data.filter(
+  item => item.user === "pa@142.com"
+);
+
+
+
+
+Search Client
+https://pz5eauq0g0.execute-api.us-east-1.amazonaws.com/qa/clients/information/VGxSak0wMXFVVDA9
+portal_client_id
+portal_partner_id
+pax8_subscription_id

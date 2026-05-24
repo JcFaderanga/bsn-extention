@@ -5,6 +5,7 @@ import {
   FaUserShield,
   FaClipboardList,
   FaDatabase,
+  FaCheckCircle,
 } from "react-icons/fa";
 
 const Card = ({ icon, label, onClick }) => {
@@ -60,11 +61,11 @@ const Card = ({ icon, label, onClick }) => {
 
 const Menu = ({ setSubtab }) => {
   const menus = [
-    {
-      label: "Login",
-      key: "userLogins",
-      icon: <FaRegUser size={15} />,
-    },
+    // {
+    //   label: "Login",
+    //   key: "userLogins",
+    //   icon: <FaRegUser size={15} />,
+    // },
     {
       label: "255 Char",
       key: "charlength",
@@ -84,6 +85,11 @@ const Menu = ({ setSubtab }) => {
       label: "Training",
       key: "Training",
       icon: <FaDatabase size={15} />,
+    },
+    {
+      label: "Welcome Message",
+      key: "WelcomeMessage",
+      icon: <FaCheckCircle size={15} />,
     },
   ];
 

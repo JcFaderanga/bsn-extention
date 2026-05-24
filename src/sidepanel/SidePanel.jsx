@@ -94,7 +94,7 @@ function SidePanel() {
             <LuComputer size={16} />
             QA Assist
         </span>
-        <i className='text-gray-500 text-sm'>v2.14.1</i>
+        <i className='text-gray-500 text-sm'>v2.15.0</i>
       </header>
       <nav className="flex border-b bg-white">
         {TABS.map((tab) => (
