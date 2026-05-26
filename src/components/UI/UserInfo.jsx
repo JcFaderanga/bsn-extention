@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GoDotFill } from "react-icons/go";
-import { COMMON_REQUEST } from '../../../../utils/useCommonAPI';
+import { COMMON_REQUEST } from '../../utils/useCommonAPI';
 
 const InfoRow = ({ label, value }) => {
   return (
@@ -69,13 +69,9 @@ const UserInfo = () => {
 
     const findUser = async () => {
       try {
-        const user = await request.searchUser(userData.email);
+        const user = await request.searchUserByEmail(userData.email);
 
-        const filteredUser = user?.data?.find(
-          item => item?.user_email === userData.email
-        );
-
-        if (!filteredUser) return;
+        if (!user) return;
 
         setUserData(prev => ({
           ...prev,

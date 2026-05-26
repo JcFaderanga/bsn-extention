@@ -26,13 +26,8 @@ const ALIASES = {
 
 export class COMMON_REQUEST {
     async setWelcomeMessage(email) {
-        const findRes = await this.searchUser(email);
+        const user = await this.searchUserByEmail(email);
 
-        const user = findRes?.data?.find(
-            item => item?.user_email === email
-        );
-        console.log("user", user)
-        console.log("user?.client_id", user?.client_id)
         if (!user) {
             throw new Error(`User not found for email: ${email}`);
         }
@@ -68,12 +63,33 @@ export class COMMON_REQUEST {
         return res;
     }
     
-    async searchUser(email){
+    async getUserDataByLogin(email){
+        
+        const res = await Request('POST',{
+            url: "https://qa.api.pii-protect.com/cognitomiddlewares/user/login",
+            body: {
+                email,
+                password: 'Working@@123',
+                },
+            }
+        );     
+        return res;
+    }
+
+    async searchUserByEmail(email){
         const res = await Request('GET',{
             url: `https://qa.api.pii-protect.com/BSNPartnersAPI/partnerslist?_filter=user:${email}`,
             authorization: 'Admin'
         })
-        return res;
+
+        if (!res?.success) {
+            throw new Error(`Failed to search user by email. ${res?.error?.message || res?.error?.description || ""}`);
+        }
+
+        console.log("searchUserByEmail res", res)
+        return res?.data?.data?.find(
+            item => item?.user_email?.toLowerCase() === email?.toLowerCase()
+        );
     }
 
     async searchClient(clientId){
@@ -103,28 +119,21 @@ export class COMMON_REQUEST {
             throw new Error(`Invalid creds/role: ${creds}`);
         }
 
-        const res = await Request('POST',{
-                url: "https://qa.api.pii-protect.com/cognitomiddlewares/user/login",
-                body: {
-                    email,
-                    password: 'Working@@123',
-                },
-            }
-        );
+        const res = await this.getUserDataByLogin(email)
     
-        const expiresIn = res?.AuthenticationResult?.ExpiresIn ?? 3600;
+        const expiresIn = res?.data.AuthenticationResult?.ExpiresIn ?? 3600;
         const expiresAt = Date.now() + expiresIn * 1000;
         
         
         const newToken = {
-            role: GroupID[res?.user?.group_id],
-            token: res?.AuthenticationResult?.IdToken,
-            groupID: res?.user?.group_id,
+            role: GroupID[res?.data.user?.group_id],
+            token: res?.data.AuthenticationResult?.IdToken,
+            groupID: res?.data.user?.group_id,
             expiresAt,
         };
     
         localStorage.setItem(
-            GroupID[res?.user?.group_id],
+            GroupID[res?.data.user?.group_id],
             JSON.stringify(newToken) 
         );
     

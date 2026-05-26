@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { QA_User, Prod_User } from '../../../data';
+import { QA_User, Prod_User } from '../../data'
 import { FaUserAlt, FaKey } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 

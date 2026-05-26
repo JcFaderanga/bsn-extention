@@ -1,45 +1,93 @@
-const headers = {
+const DEFAULT_HEADERS = {
   accept: "application/json, text/plain, */*",
   "content-type": "application/json",
   origin: "https://qa-portal.breachsecurenow.com",
 };
-export function getCached(role) {
-    const cached = localStorage.getItem(role);
-    if (!cached) return null;
 
-    try {
-        return JSON.parse(cached);
-    } catch {
-        return null;
-    }
+/**
+ * Safely get cached JSON from localStorage
+ */
+export function getCached(key) {
+  if (!key) return null;
+
+  try {
+    const cached = localStorage.getItem(key);
+    return cached ? JSON.parse(cached) : null;
+  } catch (err) {
+    console.warn("Failed to parse cached data:", err);
+    return null;
+  }
 }
 
-export async function Request(method, request) {
+/**
+ * Standard API request wrapper
+ */
+export async function Request(method, request = {}) {
+  const { url, authorization, body } = request;
+
+  if (!method) {
+    return { success: false, error: "HTTP method is required" };
+  }
+
+  if (!url) {
+    return { success: false, error: "Request URL is required" };
+  }
+
+  // Resolve authorization safely
+  let token = authorization;
+
+  if (authorization && authorization.length < 255) {
+    const cached = getCached(authorization);
+    token = cached?.token || null;
+  } 
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000); // 15s timeout
+
   try {
-    if (!method) throw new Error("Invalid Method.");
-    if (!request) throw new Error("Invalid Request.");
-
-    const { url, authorization: auth, body: bodyRaw } = request;
-
-    const authorization = auth ? `${getCached(auth)?.token}` : {};
     const response = await fetch(url, {
       method,
-      headers: { ...headers, authorization },
-      body: bodyRaw ? JSON.stringify(bodyRaw) : undefined,
+      headers: {
+        ...DEFAULT_HEADERS,
+        ...(token ? { authorization: token } : {}),
+      },
+      body: body ? JSON.stringify(body) : undefined,
+      signal: controller.signal,
     });
 
-    console.log("response => ",response)
+    clearTimeout(timeout);
 
-    if (!response.ok) {
-      const errorText = await response.text().catch(() => null);
-      throw new Error(
-        `HTTP error! status: ${response.status} ${errorText || ""}`,
-      );
+    let data;
+    const contentType = response.headers.get("content-type");
+
+    // Safe JSON parsing
+    if (contentType?.includes("application/json")) {
+      data = await response.json().catch(() => null);
+    } else {
+      data = await response.text().catch(() => null);
     }
 
-    return await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        status: response.status,
+        error: data?.message || data || "Request failed",
+      };
+    }
+
+    return {
+      success: true,
+      status: response.status,
+      data,
+    };
   } catch (error) {
-    console.error("API Request error:", error.message);
-    throw error;
+    clearTimeout(timeout);
+
+    const isAbort = error.name === "AbortError";
+
+    return {
+      success: false,
+      error: isAbort ? "Request timeout" : error.message,
+    };
   }
 }

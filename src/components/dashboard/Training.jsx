@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import { IoIosCheckmarkCircle } from "react-icons/io";
-
-const Input = (props) => {
-    return (
-        <input
-            className="bg-white w-full px-4 py-2 rounded-xl border border-gray-300 focus:bg-white focus:ring-2 focus:ring-black/80 outline-none transition"
-            type={props.type || 'text'}
-            value={props.value || ''}
-            onChange={(e) => props.onChange(e.target.value)}
-            placeholder={props.placeholder}
-        />
-    );
-};
+import { Input } from '../UI';
+//import { Request } from '../../utils/useAPIRequest';
 
 const Training = () => {
     const [email, setEmail] = useState('');

@@ -7,6 +7,8 @@ import {
   FaDatabase,
   FaCheckCircle,
 } from "react-icons/fa";
+import { IoIosTv } from "react-icons/io";
+import { TbDeviceTvFilled } from "react-icons/tb";
 
 const Card = ({ icon, label, onClick }) => {
   return (
@@ -84,7 +86,12 @@ const Menu = ({ setSubtab }) => {
     {
       label: "Training",
       key: "Training",
-      icon: <FaDatabase size={15} />,
+      icon: <IoIosTv size={15} />,
+    },
+    {
+      label: "Micro Training",
+      key: "MicroTraining",
+      icon: <TbDeviceTvFilled size={15} />,
     },
     {
       label: "Welcome Message",

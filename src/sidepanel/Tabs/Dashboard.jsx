@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import Menu from '../components/dashboard/menu';
-import LoginAuth from '../components/dashboard/LoginAuth';
-import CharLength from '../components/dashboard/CharLength';
-import TaskTrack from '../components/dashboard/TaskTrack';
-import GetToken from '../components/dashboard/GetToken';
-import GenerateToken from '../components/dashboard/GenerateToken';
-import Training from '../components/dashboard/Training';
-import UserInfo from '../components/dashboard/extras/UserInfo';
-import WelcomeMessage from '../components/dashboard/WelcomeMessage';
+
+import {
+  Menu,
+  LoginAuth,
+  CharLength,
+  TaskTrack,
+  GetToken,
+  GenerateToken,
+  Training,
+  WelcomeMessage,
+  MicroTraining,
+} from '../../components/dashboard'
+import UserInfo from '../../components/UI/UserInfo';
+
 const Wrapper = ({ children, setSubTab }) => {
   return (
     <div>
@@ -34,10 +39,11 @@ function Dashboard() {
     GenerateToken: <GenerateToken />,
     Training: <Training />,
     WelcomeMessage: <WelcomeMessage />,
+    MicroTraining: <MicroTraining />,
   };
 
   return (
-    <div>
+    <>
       <UserInfo/>
       <div className="space-y-4">
         {!subTab && (
@@ -50,7 +56,7 @@ function Dashboard() {
           </Wrapper>
         )}
       </div>
-    </div>
+    </>
   );
 }
 
