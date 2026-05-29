@@ -25,15 +25,50 @@ const ALIASES = {
   };
 
 export class COMMON_REQUEST {
+
+    isEmailValid (email) {
+        const isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/.test(email)
+
+        if(!isValid){
+            return {
+                success: false,
+                error: "Does that look like an email address ba? isa pa try mo again.",
+            };
+        } 
+        return {
+            success: true,
+            error: null,
+        };
+    };
+
     async setWelcomeMessage(email) {
-        const user = await this.searchUserByEmail(email);
+
+        const isEmail = this.isEmailValid(email);
+        if(!isEmail.success) return isEmail;
+        
+        const {
+            data: user,
+            success: user_success,
+            error: user_error
+        } = await this.searchUserByEmail(email);
 
         if (!user) {
             throw new Error(`User not found for email: ${email}`);
         }
 
-        const client = await this.searchClient(user?.client_id);
+        const {
+            data: client, 
+            success: client_success, 
+            error: client_error 
+        } = await this.searchClient(user?.client_id);
         
+        if(!client_success){
+            return {
+                success: false,
+                error: error
+            }
+        } 
+
         if (!client) {
             throw new Error(`Client not found for client_id: ${user?.client_id}`);
         }
@@ -65,6 +100,9 @@ export class COMMON_REQUEST {
     
     async getUserDataByLogin(email){
         
+        const isEmail = this.isEmailValid(email);
+        if(!isEmail.success) return isEmail;
+
         const res = await Request('POST',{
             url: "https://qa.api.pii-protect.com/cognitomiddlewares/user/login",
             body: {
@@ -73,31 +111,43 @@ export class COMMON_REQUEST {
                 },
             }
         );     
+
         return res;
     }
 
     async searchUserByEmail(email){
-        const res = await Request('GET',{
+        const {data, success, error} = await Request('GET',{
             url: `https://qa.api.pii-protect.com/BSNPartnersAPI/partnerslist?_filter=user:${email}`,
             authorization: 'Admin'
         })
 
-        if (!res?.success) {
-            throw new Error(`Failed to search user by email. ${res?.error?.message || res?.error?.description || ""}`);
+        if (!success) {
+            return {
+                success: false,
+                error: "Does that look like an email address ba? isa pa try mo again.",
+            };
         }
 
-        console.log("searchUserByEmail res", res)
-        return res?.data?.data?.find(
+        const user = data?.data?.find(
             item => item?.user_email?.toLowerCase() === email?.toLowerCase()
         );
+
+        return {data: user, success: true}
     }
 
     async searchClient(clientId){
-        const res = await Request('GET',{
+        const {data, success, error} = await Request('GET',{
             url: `https://pz5eauq0g0.execute-api.us-east-1.amazonaws.com/qa/clients/information/${clientId}`,
             authorization: 'Admin'
         })
-        return res;
+
+        if (!success) {
+            return {
+                success: false,
+                error: "Does that look like an email address ba? isa pa try mo again.",
+            };
+        }
+        return {data, success: true}
     }
 
     async searchPartner(){
@@ -119,21 +169,20 @@ export class COMMON_REQUEST {
             throw new Error(`Invalid creds/role: ${creds}`);
         }
 
-        const res = await this.getUserDataByLogin(email)
+        const {data, error} = await this.getUserDataByLogin(email)
     
-        const expiresIn = res?.data.AuthenticationResult?.ExpiresIn ?? 3600;
+        const expiresIn = data.AuthenticationResult?.ExpiresIn ?? 3600;
         const expiresAt = Date.now() + expiresIn * 1000;
         
-        
         const newToken = {
-            role: GroupID[res?.data.user?.group_id],
-            token: res?.data.AuthenticationResult?.IdToken,
-            groupID: res?.data.user?.group_id,
+            role: GroupID[data.user?.group_id],
+            token: data.AuthenticationResult?.IdToken,
+            groupID: data.user?.group_id,
             expiresAt,
         };
     
         localStorage.setItem(
-            GroupID[res?.data.user?.group_id],
+            GroupID[data.user?.group_id],
             JSON.stringify(newToken) 
         );
     

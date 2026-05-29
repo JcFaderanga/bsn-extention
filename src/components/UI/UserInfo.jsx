@@ -75,7 +75,7 @@ const UserInfo = () => {
 
         setUserData(prev => ({
           ...prev,
-          client_id: filteredUser.client_id,
+          client_id: user?.data?.client_id,
         }));
       } catch (err) {
         console.error("findUser error:", err);
@@ -93,7 +93,7 @@ const UserInfo = () => {
 
     const findClient = async () => {
       try {
-        const client = await request.searchClient(userData.client_id);
+        const {data: client, success, error} = await request.searchClient(userData.client_id);
 
         setUserData(prev => ({
           ...prev,

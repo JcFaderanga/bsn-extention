@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Dashboard from './Tabs/Dashboard';
 import Settings from './Tabs/Settings';
 import Logs from './Tabs/Logs';
+import MaskMode from './Tabs/MaskMode';
 import { LuComputer } from "react-icons/lu";
 
-const TABS = ['Dashboard', 'Settings', 'Logs'];
+const TABS = ['Dashboard', 'Mask Mode'];
 
 function SidePanel() {
   const [activeTab, setActiveTab] = useState('Dashboard');
@@ -70,6 +71,8 @@ function SidePanel() {
 
   const renderContent = () => {
     switch (activeTab) {
+      case 'Mask Mode':
+        return <MaskMode/>;
       case 'Settings':
         return <Settings />;
       case 'Logs':
@@ -94,7 +97,7 @@ function SidePanel() {
             <LuComputer size={16} />
             QA Assist
         </span>
-        <i className='text-gray-500 text-sm'>v2.15.0</i>
+        <i className='text-gray-500 text-sm'>v2.18.0</i>
       </header>
       <nav className="flex border-b bg-white">
         {TABS.map((tab) => (
