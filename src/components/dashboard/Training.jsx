@@ -41,19 +41,19 @@ impactESS: false,
 			const userIdToken = data?.AuthenticationResult?.IdToken;
 			setUserToken(userIdToken);
 
-			const training_res = await Request("GET", {
+			const { success: training_success, error: training_error, data: training_data, status: training_status } = await Request("GET", {
 				url: `https://qa.api.pii-protect.com/TestAuthoringSystem/training/v2/users-trainings?training_type=training`,
 				authorization: userIdToken,
 			});
 
-			if (!training_res?.success) {
+			if (!training_success) {
 				setError(
-				training_res?.error?.message || "Failed to fetch trainings"
+					training_error || `Status ${training_status}: Failed to fetch trainings`
 				);
 				return;
 			}
 
-		setTrainingList(training_res?.data?.trainings || []);
+		setTrainingList(training_data?.trainings || []);
 		} catch (err) {
 		setError(err?.message || "Unexpected error");
 		} finally {
@@ -149,7 +149,7 @@ impactESS: false,
 			if(!success){
 				return {
 					success: false,
-					error: error
+					error: `Status ${status}: ${error}`
 				}
 			}
 			
@@ -173,12 +173,12 @@ impactESS: false,
 			});
 
 			if(!success) {
-				setError(error)
+				setError(`Status ${status}: ${error}`)
 				return;
 			}
 			console.log("resumeQuiz =>", data)
 			if (!data.revision_id || !data.questions) {
-				setError('Invalid quiz session')
+				setError(`Status ${status}: Invalid quiz session`)
 			}
 
 			return {
