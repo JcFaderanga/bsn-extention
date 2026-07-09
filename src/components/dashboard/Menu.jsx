@@ -9,6 +9,8 @@ import {
 } from "react-icons/fa";
 import { IoIosTv } from "react-icons/io";
 import { TbDeviceTvFilled } from "react-icons/tb";
+import { MdFactCheck } from "react-icons/md";
+
 
 const Card = ({ icon, label, onClick }) => {
   return (
@@ -87,6 +89,11 @@ const Menu = ({ setSubtab }) => {
       label: "Training",
       key: "Training",
       icon: <IoIosTv size={15} />,
+    },
+    {
+      label: "Training Answers",
+      key: "TrainingAnswers",
+      icon: <MdFactCheck size={15} />,
     },
     {
       label: "Micro Training",

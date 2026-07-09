@@ -3,7 +3,7 @@ import { Input, Button } from "../UI";
 import { COMMON_REQUEST } from "../../utils/useCommonAPI";
 import { Request } from "../../utils/useAPIRequest";
 import { ClipLoader } from "react-spinners";
-
+import env from "../../utils/useEviroment";
 const Training = () => {
 const [email, setEmail] = useState("");
 const [userToken, setUserToken] = useState("");
@@ -18,7 +18,7 @@ impactESS: false,
 });
 
   	const request = new COMMON_REQUEST();
-	const BASE_URL = "https://qa.api.pii-protect.com";
+	const BASE_URL = `https://${env()}.api.pii-protect.com`;
 
   // =========================
   // FETCH DATA
@@ -42,7 +42,7 @@ impactESS: false,
 			setUserToken(userIdToken);
 
 			const { success: training_success, error: training_error, data: training_data, status: training_status } = await Request("GET", {
-				url: `https://qa.api.pii-protect.com/TestAuthoringSystem/training/v2/users-trainings?training_type=training`,
+				url: `${BASE_URL}/TestAuthoringSystem/training/v2/users-trainings?training_type=training`,
 				authorization: userIdToken,
 			});
 
@@ -369,8 +369,10 @@ impactESS: false,
 				}
 
 				const results = await submitQuizAnswers(revision_id, quiz_with_answers)
-				if(results){
+				if(results && isAutoSubmit){
 					handleProgressLog(quiz_id, 'Submitting Answers...')
+				} else {
+					handleProgressLog(quiz_id, '✅ Answers are ready. You can submit training manually.')
 				}
 				
 				if(isAutoSubmit){
@@ -404,7 +406,7 @@ return (
 			/>
 
 			<Button
-				title="Get Micro Trainings"
+				title="Get Trainings"
 				onClick={fetchTraining}
 				loading={loading}
 				disabled={!email || loading}
@@ -436,7 +438,7 @@ return (
 					</label>
 				</div>
 
-				<div className="flex gap-2 justify-between py-2 mt-2">
+				<div className="flex gap-2 justify-between py-2 mt-2 flex-wrap">
 					{/* SELECT ALL */}
 					<label className="flex items-center gap-1">
 						<input
@@ -449,7 +451,7 @@ return (
 					
 					{/* ACTION */}
 					{selectedTrainings.length > 0 && (
-						<div className="flex gap-1">
+						<div className="flex gap-1 flex-wrap">
 							<button
 							onClick={handleAnswerAllSelected}
 							className="text-sm border bg-slate-200 px-4 py-0.5 rounded-lg"
@@ -487,14 +489,12 @@ return (
 						<div className="flex gap-2 items-center">
 
 							<input
-							type="checkbox"
-							checked={isChecked}
-							onChange={() => toggleMT(t)}
+								type="checkbox"
+								checked={isChecked}
+								onChange={() => toggleMT(t)}
 							/>
 
-							<p>
-							{t.impacts_ess !== "No" && "⭐️"} {t.training_name}
-							</p>
+							<p>{t.impacts_ess !== "No" && "⭐️"} {t.training_name}</p>
 						</div>
 						<p>{t.score}</p>
 						{

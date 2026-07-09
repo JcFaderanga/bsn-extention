@@ -10,6 +10,7 @@ import {
   Training,
   WelcomeMessage,
   MicroTraining,
+  TrainingAnswers,
 } from '../../components/dashboard'
 import UserInfo from '../../components/UI/UserInfo';
 
@@ -40,6 +41,7 @@ function Dashboard() {
     Training: <Training />,
     WelcomeMessage: <WelcomeMessage />,
     MicroTraining: <MicroTraining />,
+    TrainingAnswers: <TrainingAnswers />,
   };
 
   return (

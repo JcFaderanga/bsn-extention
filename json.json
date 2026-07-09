@@ -1,121 +1,244 @@
 {
-    "profile": {
-        "all_newsfeed_notifications_seen": 1,
-        "avatar_filename": null,
-        "client_id": "VGxSbk0wMXFUVDA9",
-        "client_industry": {
-            "id": 55,
-            "name": "Other"
+    "allow_attachments": 0,
+    "allow_questions_navigation": 1,
+    "allow_resuming": 1,
+    "categories": [
+        {
+            "quiz_category_id": "VFZSSk1FMTNQVDA9",
+            "quiz_category_name": "Demographics",
+            "quiz_category_number": 0,
+            "quiz_section_id": "VFdwTmR3PT0=",
+            "quiz_section_name": "AI Culture Assessment"
         },
-        "client_name": "(A) UT Client",
-        "client_type": "Unlimited Training",
-        "content_admin": false,
-        "copyright": "PII Protect Copyright © 2026",
-        "dark_mode": false,
-        "dir_sync": 0,
-        "dwm_terms_of_use": false,
-        "email": "manageradmin@142.ut",
-        "enterprise_bpp": 0,
-        "ess": 500,
-        "favorite": "myDashboard",
-        "favorite_tab": "securityTraining",
-        "federated": false,
-        "first_name": "manageradmin@142.ut",
-        "get_started_notify": false,
-        "global_partner_access": 0,
-        "group_id": "VG5jOVBRPT0=",
-        "help_center_url": null,
-        "hidden": {
-            "ess_chart": true
+        {
+            "quiz_category_id": "VFZSSk1FNUJQVDA9",
+            "quiz_category_name": "Trust & Psychological Safety",
+            "quiz_category_number": 1,
+            "quiz_section_id": "VFdwTmR3PT0=",
+            "quiz_section_name": "AI Culture Assessment"
         },
-        "id": "VGtSRk1VNVVUWGc9",
-        "last_login": "Mon, 18 May 2026 18:40:31 GMT",
-        "last_name": "manageradmin@142.ut",
-        "logo_partner": "https://qa-portal.pii-protect.com/partner/logo/18199/1773223984738.jpeg",
-        "logo_product": "https://qa-portal.breachsecurenow.com/partner/service_logo/18199/1773905007180.jpeg",
-        "new_ui": true,
-        "newsfeed_unopened_notifications_count": 0,
-        "partner_distributor": "BSN",
-        "partner_id": "VFZSbmVFOVVhejA9",
-        "partner_name": "April Partner 142 - HIPAA Internal (Main Partner)",
-        "preferences": null,
-        "product_name": "Unlimited Cybersecurity Training",
-        "service_logo_text": null,
-        "user_role": "Manager Admin",
-        "zendesk_enabled": true
-    },
-    "access": {
-        "apps": {
-            "myCompany": {
-                "complianceDashboard": true,
-                "cyberInsurance": true,
-                "darkWebMonitoring": true,
-                "dashboard": true,
-                "documents": true,
-                "employees": true,
-                "microTrainings": true,
-                "phishingReports": true,
-                "policies": true,
-                "preAssessments": true,
-                "pushNotifications": true,
-                "sra": true,
-                "sraDocuments": true,
-                "track": true,
-                "training": true,
-                "trainingConfiguration": true
-            },
-            "myDashboard": {
-                "darkWeb": true,
-                "dashboard": true,
-                "microTrainings": true,
-                "newsletters": true,
-                "securityPolicies": true,
-                "securityTraining": true
-            },
-            "trainingHub": {
-                "completedCourses": true,
-                "library": true
-            },
-            "user": {
-                "contactUs": true,
-                "profile": true
-            }
+        {
+            "quiz_category_id": "VFZSSk1FNVJQVDA9",
+            "quiz_category_name": "AI Literacy & Practical Know-How",
+            "quiz_category_number": 2,
+            "quiz_section_id": "VFdwTmR3PT0=",
+            "quiz_section_name": "AI Culture Assessment"
         },
-        "features": {
-            "billing": true,
-            "leaderboard": true,
-            "marketing_material": true,
-            "new_sra": true,
-            "overall": true,
-            "payment": true,
-            "purchasing": true,
-            "show_dark_mode_switch": true
+        {
+            "quiz_category_id": "VFZSSk1FNW5QVDA9",
+            "quiz_category_name": "Knowledge Sharing & Collaboration",
+            "quiz_category_number": 3,
+            "quiz_section_id": "VFdwTmR3PT0=",
+            "quiz_section_name": "AI Culture Assessment"
+        },
+        {
+            "quiz_category_id": "VFZSSk1FNTNQVDA9",
+            "quiz_category_name": "Governance & Responsible Use",
+            "quiz_category_number": 4,
+            "quiz_section_id": "VFdwTmR3PT0=",
+            "quiz_section_name": "AI Culture Assessment"
+        },
+        {
+            "quiz_category_id": "VFZSSk1FOUJQVDA9",
+            "quiz_category_name": "Measurement & Appetite for Growth",
+            "quiz_category_number": 5,
+            "quiz_section_id": "VFdwTmR3PT0=",
+            "quiz_section_name": "AI Culture Assessment"
         }
-    },
-    "theme": {
-        "base": {
-            "base": "#aa7941",
-            "dark1": "#77552e",
-            "dark2": "#553c20",
-            "dark3": "#1a120a",
-            "light1": "#ae804b",
-            "light2": "#b78d5d",
-            "light3": "#fbf8f5"
+    ],
+    "categories_count": 6,
+    "has_score": 0,
+    "questions": [
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FMTNQVDA9",
+            "question_id": "VFdwRmVrMVVhejA9",
+            "question_number": 1,
+            "question_section_id": "VFdwTmR3PT0="
         },
-        "grey": {
-            "base": "#4d4d4d",
-            "dark1": "#464646",
-            "dark2": "#363636",
-            "dark3": "#101010",
-            "light1": "#545454",
-            "light2": "#666",
-            "light3": "#f6f6f6"
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FMTNQVDA9",
+            "question_id": "VFdwRmVrMXFRVDA9",
+            "question_number": 2,
+            "question_section_id": "VFdwTmR3PT0="
         },
-        "system": {
-            "danger": "#FF5A61",
-            "info": "#0069FF",
-            "success": "#0CCE6B",
-            "warning": "#FFA457"
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNUJQVDA9",
+            "question_id": "VFdwRmVrMXFSVDA9",
+            "question_number": 3,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNUJQVDA9",
+            "question_id": "VFdwRmVrMXFTVDA9",
+            "question_number": 4,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNUJQVDA9",
+            "question_id": "VFdwRmVrMXFUVDA9",
+            "question_number": 5,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNUJQVDA9",
+            "question_id": "VFdwRmVrMXFVVDA9",
+            "question_number": 6,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNUJQVDA9",
+            "question_id": "VFdwRmVrMXFWVDA9",
+            "question_number": 7,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNVJQVDA9",
+            "question_id": "VFdwRmVrMXFXVDA9",
+            "question_number": 8,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNVJQVDA9",
+            "question_id": "VFdwRmVrMXFZejA9",
+            "question_number": 9,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNVJQVDA9",
+            "question_id": "VFdwRmVrMXFaejA9",
+            "question_number": 10,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNVJQVDA9",
+            "question_id": "VFdwRmVrMXFhejA9",
+            "question_number": 11,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNVJQVDA9",
+            "question_id": "VFdwRmVrMTZRVDA9",
+            "question_number": 12,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNW5QVDA9",
+            "question_id": "VFdwRmVrMTZSVDA9",
+            "question_number": 13,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNW5QVDA9",
+            "question_id": "VFdwRmVrMTZTVDA9",
+            "question_number": 14,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNW5QVDA9",
+            "question_id": "VFdwRmVrMTZUVDA9",
+            "question_number": 15,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNW5QVDA9",
+            "question_id": "VFdwRmVrMTZVVDA9",
+            "question_number": 16,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNW5QVDA9",
+            "question_id": "VFdwRmVrMTZWVDA9",
+            "question_number": 17,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNTNQVDA9",
+            "question_id": "VFdwRmVrMTZXVDA9",
+            "question_number": 18,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNTNQVDA9",
+            "question_id": "VFdwRmVrMTZZejA9",
+            "question_number": 19,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNTNQVDA9",
+            "question_id": "VFdwRmVrMTZaejA9",
+            "question_number": 20,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNTNQVDA9",
+            "question_id": "VFdwRmVrMTZhejA9",
+            "question_number": 21,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FNTNQVDA9",
+            "question_id": "VFdwRmVrNUVRVDA9",
+            "question_number": 22,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FOUJQVDA9",
+            "question_id": "VFdwRmVrNUVSVDA9",
+            "question_number": 23,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FOUJQVDA9",
+            "question_id": "VFdwRmVrNUVTVDA9",
+            "question_number": 24,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FOUJQVDA9",
+            "question_id": "VFdwRmVrNUVUVDA9",
+            "question_number": 25,
+            "question_section_id": "VFdwTmR3PT0="
+        },
+        {
+            "is_answered": 0,
+            "question_category_id": "VFZSSk1FOUJQVDA9",
+            "question_id": "VFdwRmVrNUVVVDA9",
+            "question_number": 26,
+            "question_section_id": "VFdwTmR3PT0="
         }
-    }
+    ],
+    "questions_count": 26,
+    "quiz_title": "AI Culture Assessment",
+    "randomize_questions": 0,
+    "record_question_timestamp": 0,
+    "revision_id": "VFhwbmVVMUVWVFU9",
+    "show_categories": 1,
+    "show_progress": 1,
+    "show_question_answer_feedback": 0,
+    "show_score": 0
 }

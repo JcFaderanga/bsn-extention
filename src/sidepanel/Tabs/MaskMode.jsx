@@ -1,75 +1,110 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { setLocalStorage, getLocalStorage } from '../../utils/useLocalStorage';
 import {
-  Menu,
   LoginAuth,
   CharLength,
-  TaskTrack,
   GetToken,
   GenerateToken,
   Training,
   WelcomeMessage,
   MicroTraining,
-} from '../../components/dashboard'
+} from '../../components/dashboard';
+import UserInfoMaskMode from '../../components/maskMode/UserInfoMaskMode';
 import LoginMaskMode from '../../components/maskMode/LoginMaskMode';
-import UserInfo from '../../components/UI/UserInfo';
-
-const Wrapper = ({ children, setSubTab }) => {
-  return (
-    <div>
-      <button
-        className="mt-2 text-sm text-gray-500 underline"
-        onClick={() => setSubTab(null)}
-      >
-        Back to Menu
-      </button>
-
-      {children}
-    </div>
-  );
-};
+import MenuMaskMode from '../../components/maskMode/MenuMaskMode';
 
 function MaskMode() {
 const [subTab, setSubTab] = useState(null);
-const [env, setEnv] = useState(
-    localStorage.getItem('env') || 'QA'
-);
-const [maskUserData, setMaskUserData] = useState(
-    localStorage.getItem('maskUserData') || null
-)
 
-    function handleEnvChange(e) {
-        const value = e.target.value;
+const [maskUserData, setMaskUserData] = useState(() => {
+    const data = getLocalStorage('maskUserData');
 
-        setEnv(value);
-        localStorage.setItem('env', value);
+    if (!data || data === 'undefined') return null;
+
+    try {
+        return data;
+    } catch (err) {
+        console.warn('Invalid maskUserData in localStorage:', data);
+        return null;
     }
+});
 
-    const Sections = {
-        // userLogins: <LoginAuth />,
-        charlength: <CharLength />,
-        //taskTrack: <TaskTrack />,
-        getToken: <GetToken />,
-        GenerateToken: <GenerateToken />,
-        Training: <Training />,
-        WelcomeMessage: <WelcomeMessage />,
-        MicroTraining: <MicroTraining />,
-    };
 
+	// ✅ Function to update userData safely
+	function updateUserData(data) {
+		setMaskUserData(data);
+		setLocalStorage('maskUserData', data);
+	}
+
+	function logoutUserData() {
+		setMaskUserData(null);
+		setLocalStorage('maskUserData', null);
+		setLocalStorage('maskClientData', null);
+	}
+
+	const Wrapper = ({ children, setSubTab }) => {
+		return (
+			<div>
+				<button
+					className="mt-2 text-sm text-gray-500 underline"
+					onClick={() => setSubTab(null)}
+				>
+					Back to Menu
+				</button>
+
+				{children}
+			</div>
+		);
+	};
+
+
+	const Sections = {
+		UserInfo: <UserInfoMaskMode />,
+	};
   return (
     <>
-      <div className='flex gap-2 my-2 items-center'>
-        <label>Environment</label>
-        <select 
-        className='border rounded-lg p-1 px-2'
-        value={env}
-        onChange={handleEnvChange}
-        >
-            <option value="QA">QA</option>
-            <option value="PRE">PRE</option>
-        </select>
-      </div>
-        { maskUserData ? 'Logged in' : <LoginMaskMode/> }
+		<div className="flex gap-2 my-2 items-center">
+			<button
+				onClick={() => logoutUserData()}
+				className="text-sm text-red-500 underline"
+			>
+				Logout
+			</button>
+		</div>
+		
+		{maskUserData ? (
+			<div>
+				{!subTab && (
+					<>
+						<div className='flex justify-between px-4'>
+							<img 
+								src={maskUserData?.user.logo_partner} 
+								alt='partner logo' 
+								className='h-16'
+							/>
+							<img 
+								src={maskUserData?.user.logo_product} 
+								alt='product logo'
+								className='h-16'
+							/>	
+						</div>	
+						<MenuMaskMode setSubtab={(tab) => setSubTab(tab)} />
+					</>
+				
+				)}
+				{subTab && (
+					<Wrapper setSubTab={setSubTab}>
+						{Sections[subTab]}
+					</Wrapper>
+				)}	
+					{/* <pre className='text-xs'>
+					{JSON.stringify(maskUserData, null, 2)}
+				</pre> */}
+			
+			</div>
+		) : (
+			<LoginMaskMode onLogin={updateUserData} />
+		)}
     </>
   );
 }

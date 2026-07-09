@@ -4,10 +4,10 @@ import { COMMON_REQUEST } from './utils/useCommonAPI';
 import { getCached } from './utils/useAPIRequest';
 const EMAILS = {
     Admin: "admin@142.com",
-    PartnerAdmin: "pa@142.com",
-    ManagerAdmin: "manageradmin@142.com",
-    Manager: "manager@142.com",
-    Employee: "employee@142.bpp",
+    // PartnerAdmin: "pa@142.com",
+    // ManagerAdmin: "manageradmin@142.com",
+    // Manager: "manager@142.com",
+    // Employee: "employee@142.bpp",
 };
 
 const EXPIRY_BUFFER = 30 * 1000;
@@ -36,7 +36,7 @@ async function loadAllTokens() {
         console.log("Token Generated for: ", role)
     });
 
-   await Promise.all(tasks);
+    await Promise.all(tasks);
 }
 
 function App() {

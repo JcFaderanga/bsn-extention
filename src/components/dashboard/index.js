@@ -7,7 +7,7 @@ import GenerateToken from './GenerateToken';
 import Training from './Training';
 import WelcomeMessage from './WelcomeMessage';
 import MicroTraining from './MicroTraining';
-
+import TrainingAnswers from './GetTrainingAnswers';
 export {
   Menu,
   LoginAuth,
@@ -18,4 +18,5 @@ export {
   Training,
   WelcomeMessage,
   MicroTraining,
+  TrainingAnswers,
 };
