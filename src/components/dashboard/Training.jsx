@@ -4,6 +4,8 @@ import { COMMON_REQUEST } from "../../utils/useCommonAPI";
 import { Request } from "../../utils/useAPIRequest";
 import { ClipLoader } from "react-spinners";
 import env from "../../utils/useEviroment";
+import { RxReload } from "react-icons/rx";
+
 const Training = () => {
 const [email, setEmail] = useState("");
 const [userToken, setUserToken] = useState("");
@@ -68,7 +70,7 @@ impactESS: false,
 		if (!trainingList) return [];
 
 		return trainingList.filter((t) => {
-			if (t.score !== null) return false;
+			//if (t.score !== null) return false;
 
 			const noFilters = !filters.extraCredit && !filters.impactESS;
 
@@ -88,7 +90,7 @@ impactESS: false,
 	// TOGGLE SINGLE
 	// =========================
 	function toggleMT(t) {
-		if (t.score !== null) return;
+		//if (t.score !== null) return;
 
 		setSelectedTrainings((prev) =>
 		prev.includes(t.quiz_id)
@@ -482,21 +484,29 @@ return (
 		{/* LIST */}
 		{filteredMTList.map((t) => {
 			const isChecked = selectedTrainings.includes(t.quiz_id);
+			const score = t.score !== null 
+			? `${t.score}%` 
+			: "";
 
+			const scoreClass = t.score !== null ? (t.score >= 80 ? "text-green-500" : "text-red-500") : "";
 			return (
 				<div key={t.quiz_id} className="border border-gray-300 rounded-lg my-1 px-4 py-2 ">
 					<div className="flex justify-between">
 						<div className="flex gap-2 items-center">
 
-							<input
-								type="checkbox"
-								checked={isChecked}
-								onChange={() => toggleMT(t)}
-							/>
+						
+									<input
+										type="checkbox"
+										checked={isChecked}
+										className="cursor-pointer"
+										onChange={() => toggleMT(t)}
+									/>
+								
 
 							<p>{t.impacts_ess !== "No" && "⭐️"} {t.training_name}</p>
 						</div>
-						<p>{t.score}</p>
+						<div className="flex gap-2 items-center">
+							<p className={`text-md ${scoreClass} ${score ? '' : ''}`}>{score}</p>
 						{
 							t.training_status &&
 							<ClipLoader
@@ -505,6 +515,8 @@ return (
 								size={20}
 							/>
 						}
+						</div>
+						
 					</div>
 					{t.training_status &&
 						<div className="w-full bg-green-200 rounded-lg px-4 text-xs py-1">

@@ -10,6 +10,7 @@ import {
 import { IoIosTv } from "react-icons/io";
 import { TbDeviceTvFilled } from "react-icons/tb";
 import { MdFactCheck } from "react-icons/md";
+import { BiSolidChip } from "react-icons/bi";
 
 
 const Card = ({ icon, label, onClick }) => {
@@ -104,6 +105,11 @@ const Menu = ({ setSubtab }) => {
       label: "Welcome Message",
       key: "WelcomeMessage",
       icon: <FaCheckCircle size={15} />,
+    },
+    {
+      label: "Nano",
+      key: "Nano",
+      icon: <BiSolidChip size={15} />,
     },
   ];
 

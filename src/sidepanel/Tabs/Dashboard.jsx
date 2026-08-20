@@ -11,6 +11,7 @@ import {
   WelcomeMessage,
   MicroTraining,
   TrainingAnswers,
+  Nano,
 } from '../../components/dashboard'
 import UserInfo from '../../components/UI/UserInfo';
 
@@ -42,6 +43,7 @@ function Dashboard() {
     WelcomeMessage: <WelcomeMessage />,
     MicroTraining: <MicroTraining />,
     TrainingAnswers: <TrainingAnswers />,
+    Nano: <Nano />,
   };
 
   return (

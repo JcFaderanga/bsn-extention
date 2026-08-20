@@ -8,6 +8,7 @@ import Training from './Training';
 import WelcomeMessage from './WelcomeMessage';
 import MicroTraining from './MicroTraining';
 import TrainingAnswers from './GetTrainingAnswers';
+import Nano from './Nano';
 export {
   Menu,
   LoginAuth,
@@ -19,4 +20,5 @@ export {
   WelcomeMessage,
   MicroTraining,
   TrainingAnswers,
+  Nano,
 };
