@@ -503,7 +503,7 @@ return (
 									/>
 								
 
-							<p>{t.impacts_ess !== "No" && "⭐️"} {t.training_name}</p>
+							<p>{t.impacts_ess && t.impacts_ess !== "No" && "⭐️"} {t.training_name}</p>
 						</div>
 						<div className="flex gap-2 items-center">
 							<p className={`text-md ${scoreClass} ${score ? '' : ''}`}>{score}</p>
