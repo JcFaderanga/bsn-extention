@@ -9,14 +9,16 @@ import {
 } from "react-icons/fa";
 import { IoIosTv } from "react-icons/io";
 import { TbDeviceTvFilled } from "react-icons/tb";
-import { MdFactCheck } from "react-icons/md";
+import { MdFactCheck, MdOutlineAssessment, MdOutlineSecurity } from "react-icons/md";
 import { BiSolidChip } from "react-icons/bi";
 
 
-const Card = ({ icon, label, onClick }) => {
+const Card = ({ icon, label, onClick, disabled }) => {
   return (
     <button
       onClick={onClick}
+      disabled={disabled} 
+      title={disabled ? "Feature currently not available" : undefined}
       className="
         group
         w-full
@@ -30,6 +32,11 @@ const Card = ({ icon, label, onClick }) => {
         hover:shadow-lg
         hover:border-blue-400
         active:scale-[0.98]
+        disabled:cursor-not-allowed
+        disabled:opacity-50
+        disabled:hover:translate-y-0
+        disabled:hover:shadow-sm
+        disabled:hover:border-gray-200
         flex
         flex-col
         items-center
@@ -52,12 +59,15 @@ const Card = ({ icon, label, onClick }) => {
           duration-200
           group-hover:bg-blue-100
           group-hover:scale-110
+          group-disabled:bg-gray-100
+          group-disabled:text-gray-400
+          group-disabled:scale-100
         "
       >
         {icon}
       </div>
 
-      <span className="text-xs font-medium text-gray-700 text-center leading-tight">
+      <span className="text-xs font-medium text-gray-700 text-center leading-tight group-disabled:text-gray-400">
         {label}
       </span>
     </button>
@@ -111,6 +121,18 @@ const Menu = ({ setSubtab }) => {
       key: "Nano",
       icon: <BiSolidChip size={15} />,
     },
+    {
+      label: "Assessment",
+      key: "Assessment",
+      icon: <MdOutlineAssessment size={15} />,
+      disabled: true
+    },
+    {
+      label: "SRA",
+      key: "SRA",
+      icon: <MdOutlineSecurity size={15} />,
+      disabled: true
+    },
   ];
 
   return (
@@ -121,6 +143,7 @@ const Menu = ({ setSubtab }) => {
           icon={menu.icon}
           label={menu.label}
           onClick={() => setSubtab(menu.key)}
+          disabled={menu.disabled}
         />
       ))}
     </section>

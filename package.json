@@ -1,6 +1,6 @@
 {
-  "name": "chrome-sidepanel-extension",
-  "version": "1.0.0",
+  "name": "QA Assist Panel",
+  "version": "2.20.2",
   "private": true,
   "scripts": {
     "dev": "vite",
